@@ -1,0 +1,42 @@
+form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.form_todo_list {
+  font-family: "Roboto", sans-serif;
+  color: #333;
+  font-size: 1rem;
+  padding: 1rem 1rem;
+  border-radius: 0.2rem;
+  background-color: rgb(255, 255, 255);
+  border: none;
+  border-bottom: 0.3rem solid transparent;
+  transition: all 0.3s;
+}
+
+.form_button:focus,
+.form_todo_list:focus {
+  outline: none;
+}
+
+.form_button {
+  font-family: "Roboto", sans-serif;
+  padding: 1rem 1rem;
+  border-radius: 0.2rem;
+  font-size: 1rem;
+  margin-left: -1rem;
+  border: none;
+  background-color: rgb(255, 255, 255);
+  color: rgb(137, 206, 194);
+  border-bottom: 0.3rem solid transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.form_button:hover {
+  background: rgb(144, 238, 202);
+  color: white;
+}
