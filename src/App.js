@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import AddListForm from "./components/AddListForm";
-import TodoList from "./components/TodoList";
-import Form from "./components/Form";
 import Popup from "./components/Popup";
 
 function App() {
@@ -50,14 +48,6 @@ function App() {
         togglePop={togglePop}
       />
 
-      {/* <div className="list-container">
-        <Form todos={todos} setTodos={setTodos} />
-        <TodoList todos={todos} setTodos={setTodos} />
-      </div> */}
-      {/*       <div className="btn" onClick={togglePop}>
-        <button>New popup?</button>
-      </div> */}
-
       {seen ? (
         <Popup
           key={formatLists[formatLists.length - 1].id}
@@ -69,16 +59,6 @@ function App() {
           setFormatLists={setFormatLists}
         />
       ) : null}
-
-      {/*       {seen ? (
-        <Popup
-          togglePop={togglePop}
-          todos={todos}
-          setTodos={setTodos}
-          formatLists={formatLists}
-          setFormatLists={setFormatLists}
-        />
-      ) : null} */}
     </div>
   );
 }
