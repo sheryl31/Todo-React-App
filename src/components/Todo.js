@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 const Todo = ({ todos, setTodos, todo }) => {
-  const deleteHandler = () => {
+  const deleteHandler = useCallback(() => {
     setTodos(todos.filter((el) => el.id !== todo.id));
-  };
+  });
 
   const completeHandler = () => {
     setTodos(

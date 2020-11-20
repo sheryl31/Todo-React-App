@@ -7,17 +7,20 @@ const Popup = ({
   todos,
   setTodos,
   formatTodo,
-  formatLists,
-  setFormatLists,
+  todoContainerToggle,
+  deleteEmpty,
+  setActiveID,
+  editFormatList,
 }) => {
   const handleClick = () => {
     togglePop();
+    deleteEmpty();
     console.log("handleClick");
   };
 
   return (
     <div className="modal">
-      <div className="modal_content">
+      <div className="popup_content">
         <span className="close" onClick={handleClick}>
           &times;
         </span>
@@ -25,11 +28,18 @@ const Popup = ({
           <Form
             todos={todos}
             setTodos={setTodos}
-            formatLists={formatLists}
-            setFormatLists={setFormatLists}
+            formatTodo={formatTodo}
+            setActiveID={setActiveID}
+          />
+          <TodoList
+            key={formatTodo.id}
+            todos={todos}
+            setTodos={setTodos}
+            todoContainerToggle={todoContainerToggle}
+            setActiveID={setActiveID}
+            editFormatList={editFormatList}
             formatTodo={formatTodo}
           />
-          <TodoList todos={todos} setTodos={setTodos} />
         </div>
       </div>
     </div>

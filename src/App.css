@@ -81,6 +81,7 @@ input[type="text"] {
   align-items: center;
   overflow-y: scroll;
   overflow-x: hidden;
+  scroll-behavior: smooth;
   height: 50vh;
 }
 
@@ -153,7 +154,7 @@ input[type="text"] {
   background-color: rgba(0, 0, 0, 0.25);
 }
 
-.modal_content {
+.popup_content {
   background-color: rgb(250, 250, 250);
   position: absolute;
   top: 20%;
@@ -182,4 +183,33 @@ input[type="text"] {
 .list-container {
   position: relative;
   margin-top: 1.2rem;
+}
+
+.formatLists-todo-container {
+  background-color: rgb(250, 250, 250);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  border: 2px solid rgb(144, 238, 202);
+  box-shadow: 1px 1px 10px rgb(190, 190, 190);
+  width: 50vh;
+}
+.format-list-container {
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  scroll-behavior: smooth;
+  justify-content: space-around;
+}
+
+.hide-window {
+  display: none;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.title-todolist {
+  text-align: center;
+  font-family: "Nobile", sans-serif;
+  margin-bottom: 1rem;
 }

@@ -1,21 +1,33 @@
-import React from "react";
+import React, { useCallback } from "react";
 import Todo from "./Todo";
 
-const TodoList = ({ todos, setTodos }) => {
-  const myRef = React.createRef();
-
-  const executeScroll = () => {
-    myRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
-  /*   React.useEffect((e) => {
-    if (e && myRef.current) {
-      executeScroll();
-    }
-  }); */
+const TodoList = ({
+  todos,
+  setTodos,
+  todoContainerToggle,
+  setActiveID,
+  editFormatList,
+  formatTodo,
+}) => {
+  const clickHandler = useCallback(
+    (e) => {
+      if (e) setActiveID(e, editFormatList(e));
+    },
+    [setActiveID, editFormatList]
+  );
 
   return (
-    <div ref={myRef} className="todo-container">
+    <div
+      className={
+        todoContainerToggle ? `todo-container` : `formatLists-todo-container`
+      }
+      onClick={() => {
+        if (formatTodo && !todoContainerToggle) clickHandler(formatTodo.id);
+      }}
+    >
+      <div className="title-todolist">
+        {formatTodo != null ? formatTodo.text : ""}
+      </div>
       <ul className="todo-list">
         {todos.map((todo) => (
           <Todo key={todo.id} todos={todos} setTodos={setTodos} todo={todo} />
@@ -24,5 +36,4 @@ const TodoList = ({ todos, setTodos }) => {
     </div>
   );
 };
-
 export default TodoList;

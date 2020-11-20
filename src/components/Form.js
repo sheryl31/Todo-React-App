@@ -1,11 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-const Form = ({ todos, setTodos, formatLists, setFormatLists, formatTodo }) => {
+const Form = ({ todos, setTodos, formatTodo, setActiveID }) => {
   const [inputText, setInputText] = useState("");
-
-  useEffect(() => {
-    mapFormatTodo();
-  }, [todos]);
 
   const inputTextHandler = (e) => {
     setInputText(e.target.value);
@@ -13,26 +9,15 @@ const Form = ({ todos, setTodos, formatLists, setFormatLists, formatTodo }) => {
 
   const submitListHandler = (e) => {
     e.preventDefault();
-    setTodos([
-      ...todos,
-      { text: inputText, completed: false, id: Math.random() * 1000 },
-    ]);
+    if (inputText.length > 0) {
+      setTodos([
+        ...todos,
+        { text: inputText, completed: false, id: Math.random() * 1000 },
+      ]);
+      setInputText("");
 
-    setInputText("");
-  };
-
-  const mapFormatTodo = () => {
-    setFormatLists(
-      formatLists.map((item) => {
-        if (item.id === formatTodo.id) {
-          return {
-            ...item,
-            todos: [...todos],
-          };
-        }
-        return item;
-      })
-    );
+      if (formatTodo) setActiveID(formatTodo.id);
+    }
   };
 
   return (
