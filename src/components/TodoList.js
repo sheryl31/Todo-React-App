@@ -11,7 +11,6 @@ const TodoList = ({
   editFormatList,
   formatTodo,
   changeTitleFormatLists,
-  activeID,
 }) => {
   const [inputText, setInputText] = useState(
     formatTodo != null ? formatTodo.text : ""
@@ -22,7 +21,6 @@ const TodoList = ({
   const clickHandler = useCallback(
     (e) => {
       if (e) setActiveID(e, editFormatList(e));
-      if (e) containerHandler();
     },
     [setActiveID, editFormatList]
   );
@@ -40,40 +38,20 @@ const TodoList = ({
     changeTitleFormatLists(formatTodo, inputText);
   };
 
-  const containerHandler = () => {
-    console.log("containerHandler");
-    console.log("formatTodoID " + formatTodo.id + ", activeID " + activeID);
-
-    if (formatTodo.id === activeID && todoContainerToggle)
-      return `todo-container`;
-    else return `formatLists-todo-container`;
-  };
-
   useEffect(() => {
     if (formatTodo) {
       setActiveID(formatTodo.id);
-      setInputText(formatTodo.text);
+      //setInputText(formatTodo.text);
     }
   }, [todoContainerToggle]);
 
-  /*   useEffect(() => {
-    containerHandler();
-  }, [setActiveID]); */
+  useEffect(() => {
+    if (formatTodo) setInputText(formatTodo.text);
+  }, [formatTodo]);
 
   return (
-    <div
-      /*className={
-        todoContainerToggle ? `todo-container` : `formatLists-todo-container`
-      }*/
-      /*className={
-        formatTodo.id === setActiveID
-          ? `todo-container`
-          : `formatLists-todo-container`
-      }*/
-      className={containerHandler()}
-    >
+    <div>
       <form onSubmit={handleSubmit}>
-        {/* {formatTodo != null ? formatTodo.text : ""} */}
         <input
           value={inputText}
           onChange={inputTextHandler}

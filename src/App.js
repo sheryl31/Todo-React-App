@@ -156,7 +156,6 @@ function App() {
           setActiveID={setActiveID}
           editFormatList={editFormatList}
           changeTitleFormatLists={changeTitleFormatLists}
-          activeID={activeID}
         />
       ) : null}
       <div>
@@ -167,17 +166,18 @@ function App() {
         >
           {!seen
             ? formatLists.map((item) => (
-                <TodoList
-                  key={item.id}
-                  todos={item.todos}
-                  setTodos={setTodos}
-                  todoContainerToggle={todoContainerToggle}
-                  setActiveID={setActiveID}
-                  editFormatList={editFormatList}
-                  formatTodo={item}
-                  changeTitleFormatLists={changeTitleFormatLists}
-                  activeID={activeID}
-                />
+                <div className="formatLists-todo-container">
+                  <TodoList
+                    key={item.id}
+                    todos={item.todos}
+                    setTodos={setTodos}
+                    todoContainerToggle={todoContainerToggle}
+                    setActiveID={setActiveID}
+                    editFormatList={editFormatList}
+                    formatTodo={item}
+                    changeTitleFormatLists={changeTitleFormatLists}
+                  />
+                </div>
               ))
             : null}
         </div>
@@ -193,7 +193,6 @@ function App() {
             editFormatList={editFormatList}
             setActiveID={setActiveID}
             changeTitleFormatLists={changeTitleFormatLists}
-            activeID={activeID}
           />
         ) : null}
       </div>
