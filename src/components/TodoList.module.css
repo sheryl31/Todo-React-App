@@ -1,0 +1,17 @@
+.title_todolist {
+  font-family: "Nobile", sans-serif;
+  font-size: 1rem;
+  color: rgb(37, 37, 37);
+  padding: 0.5rem;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.title_todolist:focus {
+  outline: none;
+  cursor: default;
+}

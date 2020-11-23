@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Form from "./Form";
 import TodoList from "./TodoList";
 
@@ -11,12 +11,19 @@ const Popup = ({
   deleteEmpty,
   setActiveID,
   editFormatList,
+  changeTitleFormatLists,
+  activeID,
 }) => {
   const handleClick = () => {
     togglePop();
     deleteEmpty();
     console.log("handleClick");
   };
+
+  // scroll to top of page
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="modal">
@@ -25,12 +32,7 @@ const Popup = ({
           &times;
         </span>
         <div className="list-container">
-          <Form
-            todos={todos}
-            setTodos={setTodos}
-            formatTodo={formatTodo}
-            setActiveID={setActiveID}
-          />
+          <Form todos={todos} setTodos={setTodos} />
           <TodoList
             key={formatTodo.id}
             todos={todos}
@@ -39,6 +41,8 @@ const Popup = ({
             setActiveID={setActiveID}
             editFormatList={editFormatList}
             formatTodo={formatTodo}
+            changeTitleFormatLists={changeTitleFormatLists}
+            activeID={activeID}
           />
         </div>
       </div>

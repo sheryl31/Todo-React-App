@@ -4,9 +4,9 @@
   box-sizing: border-box;
 }
 body {
-  background-image: linear-gradient(to top, #fddb92 0%, #d1fdff 100%);
-  color: darkblue;
-  height: 100vh;
+  /* background-repeat: no-repeat; */
+  color: rgb(37, 37, 37);
+  height: 100%;
   width: 100%;
   font-family: "Roboto", sans-serif;
   justify-content: center;
@@ -16,6 +16,11 @@ header {
   display: flex;
   justify-content: center;
   padding: 2rem;
+}
+
+.App {
+  background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+  min-height: 100vh;
 }
 
 form {
@@ -35,7 +40,7 @@ input[type="text"] {
   color: #333;
   font-size: 1rem;
   padding: 0.5rem 0.5rem;
-  border-radius: 0.25rem;
+  border-radius: 0.15rem;
   background-color: rgb(255, 255, 255);
   border: none;
   transition: all 0.3s;
@@ -62,7 +67,8 @@ input[type="text"] {
   outline: none;
 }
 
-.form_button:focus {
+.form_button:focus,
+.edit-title-btn:focus {
   outline: none;
 }
 
@@ -74,6 +80,25 @@ input[type="text"] {
   background: white;
   font-size: 1.2rem;
   outline: none;
+}
+
+.fa-pencil-alt:hover {
+  color: rgb(161, 255, 189) !important;
+}
+
+.fa-pencil-alt {
+  /* outline: solid rgb(0, 0, 0) thin; */
+  border-radius: 1rem;
+  padding: 0.3rem;
+  box-shadow: 0 0 3px rgb(150, 147, 147);
+}
+
+.edit-title-btn {
+  color: rgb(17, 206, 174);
+  padding-left: 0.6rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  margin-left: -1.5rem;
 }
 
 .todo-container {
@@ -102,7 +127,7 @@ input[type="text"] {
 .todo li {
   background: white;
   color: black;
-  border-radius: 0.25rem;
+  border-radius: 0.15rem;
   font-size: 1rem;
   flex: 1;
   padding: 0.4rem 2rem 0.4rem 0.4rem;
@@ -161,15 +186,14 @@ input[type="text"] {
   left: 30%;
   width: 40%;
   padding: 0.8rem;
-  border-radius: 5px;
-  border: 2px solid rgb(144, 238, 202);
-  box-shadow: 1px 1px 10px rgb(190, 190, 190);
+  border-radius: 0.15rem;
+  box-shadow: 1px 1px 8px rgb(190, 190, 190);
   min-width: 20%;
 }
 
 .close {
   float: right;
-  color: rgb(122, 206, 193);
+  color: rgb(99, 99, 99);
   border-radius: 1rem;
   font-size: 1.3rem;
   cursor: pointer;
@@ -187,29 +211,41 @@ input[type="text"] {
 
 .formatLists-todo-container {
   background-color: rgb(250, 250, 250);
-  padding: 1rem;
+  /* padding: 1rem; */
   margin-bottom: 1rem;
-  border-radius: 5px;
-  border: 2px solid rgb(144, 238, 202);
-  box-shadow: 1px 1px 10px rgb(190, 190, 190);
+  border-radius: 0.15rem;
+  box-shadow: 1px 1px 8px rgb(190, 190, 190);
   width: 50vh;
 }
 .format-list-container {
+  padding: 2rem 4rem 1rem 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  scroll-behavior: smooth;
+  justify-content: space-evenly;
+}
+
+.hide-window {
+  /* display: none; */
   padding: 1rem;
   display: flex;
   flex-wrap: wrap;
   scroll-behavior: smooth;
-  justify-content: space-around;
-}
-
-.hide-window {
-  display: none;
+  justify-content: space-evenly;
   pointer-events: none;
-  visibility: hidden;
+  filter: blur(2px);
 }
 
 .title-todolist {
+  padding: 1rem 0.6rem 0.6rem 0.6rem;
   text-align: center;
   font-family: "Nobile", sans-serif;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
+}
+
+.inner-container {
+  padding: 0.6rem 1rem 1rem 1rem;
+  flex-wrap: wrap;
+  scroll-behavior: smooth;
+  justify-content: space-evenly;
 }

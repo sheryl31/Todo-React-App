@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Form = ({ todos, setTodos, formatTodo, setActiveID }) => {
+const Form = ({ todos, setTodos }) => {
   const [inputText, setInputText] = useState("");
 
   const inputTextHandler = (e) => {
@@ -15,8 +15,6 @@ const Form = ({ todos, setTodos, formatTodo, setActiveID }) => {
         { text: inputText, completed: false, id: Math.random() * 1000 },
       ]);
       setInputText("");
-
-      if (formatTodo) setActiveID(formatTodo.id);
     }
   };
 
