@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import styles from "./AddListForm.module.css";
+
 const AddListForm = ({ formatLists, setFormatLists, togglePop }) => {
   const [inputText, setInputText] = useState("");
 
@@ -23,7 +25,7 @@ const AddListForm = ({ formatLists, setFormatLists, togglePop }) => {
         value={inputText}
         onChange={inputTextHandler}
         type="text"
-        className="form_todo_list"
+        className={styles.form_todo_list}
         placeholder="Add New List Name.."
         id="name"
       />

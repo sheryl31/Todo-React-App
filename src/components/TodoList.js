@@ -41,7 +41,6 @@ const TodoList = ({
   useEffect(() => {
     if (formatTodo) {
       setActiveID(formatTodo.id);
-      //setInputText(formatTodo.text);
     }
   }, [todoContainerToggle]);
 
@@ -71,7 +70,7 @@ const TodoList = ({
           if (formatTodo && !todoContainerToggle) clickHandler(formatTodo.id);
         }}
       >
-        <ul className="todo-list">
+        <ul className="todo-list" key={formatTodo.id}>
           {todos.map((todo) => (
             <Todo key={todo.id} todos={todos} setTodos={setTodos} todo={todo} />
           ))}

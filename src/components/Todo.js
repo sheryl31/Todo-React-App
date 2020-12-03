@@ -1,9 +1,9 @@
-import React, { useCallback } from "react";
+import React from "react";
 
 const Todo = ({ todos, setTodos, todo }) => {
-  const deleteHandler = useCallback(() => {
+  const deleteHandler = () => {
     setTodos(todos.filter((el) => el.id !== todo.id));
-  });
+  };
 
   const completeHandler = () => {
     setTodos(
@@ -21,7 +21,10 @@ const Todo = ({ todos, setTodos, todo }) => {
 
   return (
     <div className="todo">
-      <li className={`todo-item ${todo.completed ? "completed" : ""}`}>
+      <li
+        key={todo.id}
+        className={`todo-item ${todo.completed ? "completed" : ""}`}
+      >
         {todo.text}
       </li>
       <button onClick={completeHandler} className="complete-btn">

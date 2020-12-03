@@ -1,4 +1,3 @@
-import react from "react";
 import React, { useState, useEffect, useCallback } from "react";
 import "./App.css";
 import AddListForm from "./components/AddListForm";
@@ -12,7 +11,7 @@ function App() {
   const [todoContainerToggle, setTodoContainerToggle] = useState(false);
   const [activeID, setActiveID] = useState(null);
   const [edit, setEdit] = useState(false);
-  const [currentList, setCurrentList] = useState(formatLists[0]);
+  const [currentList, setCurrentList] = useState(null);
 
   const saveLocalTodos = () => {
     localStorage.setItem("formatLists", JSON.stringify(formatLists));
@@ -24,65 +23,41 @@ function App() {
     } else {
       let localformatLists = JSON.parse(localStorage.getItem("formatLists"));
       setFormatLists(localformatLists);
+      if (localformatLists.length) setActiveID(localformatLists[0].id);
     }
   };
   const togglePop = () => {
-    console.log("formatLists ----- ", formatLists);
     setSeen(!seen);
     setTodos([]);
     setActiveID(null);
     setTodoContainerToggle(!todoContainerToggle);
-    console.log("toggle pop");
-    console.log("formatLists ----- ", formatLists);
   };
 
   const deleteEmpty = () => {
-    console.log("before delete formatLists ----- ", formatLists);
-
     setFormatLists(formatLists.filter((el) => el.todos.length > 0));
-    console.log("after formatLists ----- ", formatLists);
   };
 
   const toggleEdit = () => {
-    if (currentList && currentList.length > 0) {
+    if (currentList && currentList.todos.length > 0) {
       setEdit(!edit);
       setTodoContainerToggle(!todoContainerToggle);
     }
   };
 
   const editFormatList = (id) => {
-    console.log("editformatList");
-    console.log("formatLists ", formatLists);
-    let formatList = formatLists.filter((item) => item.id === id);
-    console.log("formatList ", formatList);
-    if (formatList && formatList.length > 0) {
+    let formatList = formatLists.find((item) => item.id === id);
+    if (formatList && formatList.todos.length > 0) {
       setCurrentList(formatList);
-      setTodos(formatList[0].todos);
+      setTodos(formatList.todos);
     }
     toggleEdit();
   };
 
   const updateFormatLists = () => {
-    console.log("updateFormatLists");
-    console.log("activeID ", activeID);
-    console.log(
-      "todos length: " +
-        todos.length +
-        ", containertoggle " +
-        todoContainerToggle
-    );
-    console.log("formatLists ", formatLists);
-    console.log("todos ", todos);
-    if (!todos.length && !todoContainerToggle) return;
+    if (!todos && !todoContainerToggle) return;
 
-    console.log("=================");
-    console.log("updateFormatLists ID ", activeID);
-    console.log("formatLists ", formatLists);
-    console.log("todos ", todos);
-    console.log("=================");
     if (activeID === null) return;
 
-    console.log("activeID: ", activeID);
     setFormatLists(
       formatLists.map((item) => {
         if (item.id === activeID) {
@@ -97,7 +72,6 @@ function App() {
   };
 
   const changeTitleFormatLists = useCallback((cur_formatTodo, text) => {
-    console.log("changeTitleFormatLists");
     setFormatLists(
       formatLists.map((item) => {
         if (item.id === cur_formatTodo.id) {
@@ -112,10 +86,9 @@ function App() {
   });
 
   const updateCurrentList = () => {
-    console.log("updateCurrentlist ", activeID);
     if (!activeID) return;
-    let formatList = formatLists.filter((item) => item.id === activeID);
-    if (formatList && formatList.length > 0) {
+    let formatList = formatLists.find((item) => item.id === activeID);
+    if (formatList && formatList.todos.length > 0) {
       setCurrentList(formatList);
     }
   };
@@ -146,7 +119,7 @@ function App() {
 
       {seen ? (
         <Popup
-          key={1}
+          key={"popup-1"}
           togglePop={togglePop}
           todos={todos}
           setTodos={setTodos}
@@ -158,6 +131,7 @@ function App() {
           changeTitleFormatLists={changeTitleFormatLists}
         />
       ) : null}
+
       <div>
         <div
           className={
@@ -165,8 +139,8 @@ function App() {
           }
         >
           {!seen
-            ? formatLists.map((item) => (
-                <div className="formatLists-todo-container">
+            ? formatLists.map((item, index) => (
+                <div className="formatLists-todo-container" key={index}>
                   <TodoList
                     key={item.id}
                     todos={item.todos}
@@ -183,11 +157,11 @@ function App() {
         </div>
         {edit ? (
           <Popup
-            key={2}
+            key={"popup-2"}
             togglePop={toggleEdit}
-            todos={currentList[0].todos}
+            todos={currentList.todos}
             setTodos={setTodos}
-            formatTodo={currentList[0]}
+            formatTodo={currentList}
             todoContainerToggle={todoContainerToggle}
             deleteEmpty={deleteEmpty}
             editFormatList={editFormatList}
